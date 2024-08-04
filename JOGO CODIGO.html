@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Cartas - Animais</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #e9eef7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #666;
+        }
+        select, button {
+            font-size: 1em;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Cartas - Animais</h1>
+    <div>
+        <h2>Escolha as Cartas:</h2>
+        <select id="carta1">
+            <option value="Baleia Azul">Baleia Azul</option>
+            <option value="Orca">Orca</option>
+            <option value="Tubarão Branco">Tubarão Branco</option>
+            <option value="Urso Polar">Urso Polar</option>
+            <option value="Crocodilo">Crocodilo</option>
+            <option value="Leão">Leão</option>
+            <option value="Tigre">Tigre</option>
+            <option value="Onça">Onça</option>
+            <option value="Dragão de Komodo">Dragão de Komodo</option>
+            <option value="Panda">Panda</option>
+            <option value="Jiboia">Jiboia</option>
+            <option value="Hiena">Hiena</option>
+            <option value="Javali">Javali</option>
+            <option value="Leão Marinho">Leão Marinho</option>
+            <option value="Lobo">Lobo</option>
+            <option value="Chimpanzé">Chimpanzé</option>
+            <option value="Pitbull">Pitbull</option>
+            <option value="Pelicano">Pelicano</option>
+            <option value="Lontra">Lontra</option>
+            <option value="Guaxinim">Guaxinim</option>
+            <option value="Cobra Real">Cobra Real</option>
+            <option value="Coruja">Coruja</option>
+            <option value="Tartaruga">Tartaruga</option>
+            <option value="Camaleão">Camaleão</option>
+            <option value="Morcego">Morcego</option>
+            <option value="Sapo">Sapo</option>
+            <option value="Caranguejeira">Caranguejeira</option>
+            <option value="Rato">Rato</option>
+            <option value="Louva-a-Deus">Louva-a-Deus</option>
+            <option value="Planta Carnívora">Planta Carnívora</option>
+            <option value="Formiga Africana">Formiga Africana</option>
+            <option value="Larva">Larva</option>
+            <option value="Mosca">Mosca</option>
+        </select>
+        <select id="carta2">
+            <option value="Baleia Azul">Baleia Azul</option>
+            <option value="Orca">Orca</option>
+            <option value="Tubarão Branco">Tubarão Branco</option>
+            <option value="Urso Polar">Urso Polar</option>
+            <option value="Crocodilo">Crocodilo</option>
+            <option value="Leão">Leão</option>
+            <option value="Tigre">Tigre</option>
+            <option value="Onça">Onça</option>
+            <option value="Dragão de Komodo">Dragão de Komodo</option>
+            <option value="Panda">Panda</option>
+            <option value="Jiboia">Jiboia</option>
+            <option value="Hiena">Hiena</option>
+            <option value="Javali">Javali</option>
+            <option value="Leão Marinho">Leão Marinho</option>
+            <option value="Lobo">Lobo</option>
+            <option value="Chimpanzé">Chimpanzé</option>
+            <option value="Pitbull">Pitbull</option>
+            <option value="Pelicano">Pelicano</option>
+            <option value="Lontra">Lontra</option>
+            <option value="Guaxinim">Guaxinim</option>
+            <option value="Cobra Real">Cobra Real</option>
+            <option value="Coruja">Coruja</option>
+            <option value="Tartaruga">Tartaruga</option>
+            <option value="Camaleão">Camaleão</option>
+            <option value="Morcego">Morcego</option>
+            <option value="Sapo">Sapo</option>
+            <option value="Caranguejeira">Caranguejeira</option>
+            <option value="Rato">Rato</option>
+            <option value="Louva-a-Deus">Louva-a-Deus</option>
+            <option value="Planta Carnívora">Planta Carnívora</option>
+            <option value="Formiga Africana">Formiga Africana</option>
+            <option value="Larva">Larva</option>
+            <option value="Mosca">Mosca</option>
+        </select>
+    </div>
+    <button onclick="verificarResultado()">Verificar Resultado</button>
+    <button onclick="gerarEscolhasAleatorias()">Gerar Escolhas Aleatórias</button>
+    <div id="resultado"></div>
+
+    <script>
+        // Definição das interações entre os animais
+        let interacoes = {
+            "Baleia Azul": ["Orca", "Tubarão Branco", "Urso Polar", "Crocodilo", "Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Orca": ["Tubarão Branco", "Urso Polar", "Crocodilo", "Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Tubarão Branco": ["Urso Polar", "Crocodilo", "Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Urso Polar": ["Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Crocodilo": ["Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Leão": ["Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Tigre": ["Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Onça": ["Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Dragão de Komodo": ["Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Panda": ["Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Jiboia": ["Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Hiena": ["Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Javali": ["Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Leão Marinho": ["Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Lobo": ["Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Chimpanzé": ["Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Pitbull": ["Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Pelicano": ["Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Lontra": ["Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Guaxinim": ["Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Cobra Real": ["Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Coruja": ["Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Tartaruga": ["Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Camaleão": ["Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Morcego": ["Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Sapo": ["Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Caranguejeira": ["Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Rato": ["Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Louva-a-Deus": ["Planta Carnívora", "Formiga Africana", "Larva", "Mosca"],
+            "Planta Carnívora": ["Formiga Africana", "Larva", "Mosca"],
+            "Formiga Africana": ["Larva", "Mosca"],
+            "Larva": ["Mosca"],
+            "Mosca": []
+        };
+
+        // Função para verificar o resultado da batalha entre duas cartas
+        function verificarResultado() {
+            const carta1 = document.getElementById("carta1").value;
+            const carta2 = document.getElementById("carta2").value;
+            const resultadoDiv = document.getElementById("resultado");
+
+            if (carta1 === carta2) {
+                resultadoDiv.textContent = "Empate! Escolha cartas diferentes.";
+            } else if (
+                (carta1 === "Urso Polar" && carta2 === "Crocodilo") ||
+                (carta1 === "Crocodilo" && carta2 === "Urso Polar") ||
+                (carta1 === "Dragão de Komodo" && carta2 === "Panda") ||
+                (carta1 === "Panda" && carta2 === "Dragão de Komodo") ||
+                (carta1 === "Hiena" && carta2 === "Javali") ||
+                (carta1 === "Javali" && carta2 === "Hiena") ||
+                (carta1 === "Tartaruga" && carta2 === "Camaleão") ||
+                (carta1 === "Camaleão" && carta2 === "Tartaruga") ||
+                (carta1 === "Larva" && carta2 === "Mosca") ||
+                (carta1 === "Mosca" && carta2 === "Larva")
+            ) {
+                resultadoDiv.textContent = "Empate! Essas cartas não podem derrotar uma à outra.";
+            } else if (interacoes[carta1].includes(carta2)) {
+                resultadoDiv.textContent = `${carta1} vence ${carta2}`;
+            } else {
+                resultadoDiv.textContent = `${carta2} vence ${carta1}`;
+            }
+        }
+
+        // Função para gerar escolhas aleatórias
+        function gerarEscolhasAleatorias() {
+            const cartas = Object.keys(interacoes);
+            const carta1Aleatoria = cartas[Math.floor(Math.random() * cartas.length)];
+            const carta2Aleatoria = cartas[Math.floor(Math.random() * cartas.length)];
+
+            document.getElementById("carta1").value = carta1Aleatoria;
+            document.getElementById("carta2").value = carta2Aleatoria;
+        }
+    </script>
+</body>
+</html>
