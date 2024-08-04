@@ -50,6 +50,7 @@
     <div>
         <h2>Escolha as Cartas:</h2>
         <select id="carta1">
+            <!-- Opções de cartas -->
             <option value="Baleia Azul">Baleia Azul</option>
             <option value="Orca">Orca</option>
             <option value="Tubarão Branco">Tubarão Branco</option>
@@ -85,6 +86,7 @@
             <option value="Mosca">Mosca</option>
         </select>
         <select id="carta2">
+            <!-- Opções de cartas -->
             <option value="Baleia Azul">Baleia Azul</option>
             <option value="Orca">Orca</option>
             <option value="Tubarão Branco">Tubarão Branco</option>
@@ -162,42 +164,31 @@
             "Mosca": []
         };
 
-        // Função para verificar o resultado da batalha entre duas cartas
         function verificarResultado() {
-            const carta1 = document.getElementById("carta1").value;
-            const carta2 = document.getElementById("carta2").value;
-            const resultadoDiv = document.getElementById("resultado");
+            let carta1 = document.getElementById('carta1').value;
+            let carta2 = document.getElementById('carta2').value;
 
             if (carta1 === carta2) {
-                resultadoDiv.textContent = "Empate! Escolha cartas diferentes.";
-            } else if (
-                (carta1 === "Urso Polar" && carta2 === "Crocodilo") ||
-                (carta1 === "Crocodilo" && carta2 === "Urso Polar") ||
-                (carta1 === "Dragão de Komodo" && carta2 === "Panda") ||
-                (carta1 === "Panda" && carta2 === "Dragão de Komodo") ||
-                (carta1 === "Hiena" && carta2 === "Javali") ||
-                (carta1 === "Javali" && carta2 === "Hiena") ||
-                (carta1 === "Tartaruga" && carta2 === "Camaleão") ||
-                (carta1 === "Camaleão" && carta2 === "Tartaruga") ||
-                (carta1 === "Larva" && carta2 === "Mosca") ||
-                (carta1 === "Mosca" && carta2 === "Larva")
-            ) {
-                resultadoDiv.textContent = "Empate! Essas cartas não podem derrotar uma à outra.";
-            } else if (interacoes[carta1].includes(carta2)) {
-                resultadoDiv.textContent = `${carta1} vence ${carta2}`;
+                document.getElementById('resultado').innerText = "Escolha duas cartas diferentes!";
+                return;
+            }
+
+            if (interacoes[carta1] && interacoes[carta1].includes(carta2)) {
+                document.getElementById('resultado').innerText = carta1 + " vence " + carta2 + "!";
+            } else if (interacoes[carta2] && interacoes[carta2].includes(carta1)) {
+                document.getElementById('resultado').innerText = carta2 + " vence " + carta1 + "!";
             } else {
-                resultadoDiv.textContent = `${carta2} vence ${carta1}`;
+                document.getElementById('resultado').innerText = "Empate ou interações não definidas!";
             }
         }
 
-        // Função para gerar escolhas aleatórias
         function gerarEscolhasAleatorias() {
-            const cartas = Object.keys(interacoes);
-            const carta1Aleatoria = cartas[Math.floor(Math.random() * cartas.length)];
-            const carta2Aleatoria = cartas[Math.floor(Math.random() * cartas.length)];
-
-            document.getElementById("carta1").value = carta1Aleatoria;
-            document.getElementById("carta2").value = carta2Aleatoria;
+            let cartas = ["Baleia Azul", "Orca", "Tubarão Branco", "Urso Polar", "Crocodilo", "Leão", "Tigre", "Onça", "Dragão de Komodo", "Panda", "Jiboia", "Hiena", "Javali", "Leão Marinho", "Lobo", "Chimpanzé", "Pitbull", "Pelicano", "Lontra", "Guaxinim", "Cobra Real", "Coruja", "Tartaruga", "Camaleão", "Morcego", "Sapo", "Caranguejeira", "Rato", "Louva-a-Deus", "Planta Carnívora", "Formiga Africana", "Larva", "Mosca"];
+            let escolha1 = cartas[Math.floor(Math.random() * cartas.length)];
+            let escolha2 = cartas[Math.floor(Math.random() * cartas.length)];
+            document.getElementById('carta1').value = escolha1;
+            document.getElementById('carta2').value = escolha2;
+            verificarResultado();
         }
     </script>
 </body>
